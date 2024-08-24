@@ -2,13 +2,11 @@
 """module documentation task 0"""
 
 
-import request
-
-
 def number_of_subscribers(subreddit):
     """queries the reddit api and return the number of
     subscribers (not active users, total subscribers)
     on a given subreddit"""
+    import requests
 
     response = requests.get("https://www.reddit.com/r/{}/about.json"
                             .format(subreddit),
