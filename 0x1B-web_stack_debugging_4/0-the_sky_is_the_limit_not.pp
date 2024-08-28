@@ -1,12 +1,6 @@
 # fix request errors
-
 exec { 'fix-for-nginx':
-    command => '/bin/sed -i "s/15/4096/" /etc/default/nginx',
+  command => "sed -i 's/worker_processes 4;/worker_processes 7;/g' /etc/nginx/nginx.conf && service nginx restart",
+  path    => ['/bin', '/usr/bin', '/usr/sbin'],
 }
 
-# Restart nginx
-
-exec { 'nginx':
-  command => '/usr/sbin/service nginx restart',
-  require => Exec['fix-nginx'],
-}
